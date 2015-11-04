@@ -1,6 +1,6 @@
 FROM java:7
 
-MAINTAINER fschl <friedaar@gmx.de>
+MAINTAINER Frieder Schlesier <fschl.code@gmail.com>
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
         ca-certificates \
