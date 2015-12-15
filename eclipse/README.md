@@ -1,8 +1,7 @@
 # Eclipse In A Container
 
-Run Eclipse release _Mars 1_ inside a container on your desktop. This Image uses the official `java`-images. Those are based on `openjdk` **NOT** oracles java implementation!
-
-This Repo contains 2 Dockerfiles, for `java7` and `java8`. Use accordingly to your target platform.
+Run Eclipse release _Mars 1_ inside a container on your desktop. This Image is based on the official `java`-image. Those are based on `openjdk` **NOT** oracles java implementation!
+_OpenJFX_ is also installed.
 
 You can preserve configuration and installed plugins by mounting the according volumes.
 
@@ -13,18 +12,16 @@ docker run -it --rm \
 --net host \
 -v /tmp/.X11-unix:/tmp/.X11-unix \
 -e DISPLAY=unix$DISPLAY \
--v $HOME/projects/java/workspace:/root/workspace \
+-v $HOME/projects/java/workspace:/home/eclipse/workspace \
 -v $HOME/.eclipse/plugins:/opt/eclipse/plugins \
 -v $HOME/.eclipse/configuration:/opt/eclipse/configuration \
 --name eclipse \
-fschl/eclipse-jdk8
+fschl/eclipse
 ```
 
-Replace the last line with `fschl/eclipse-jdk7` if you want prevent to use java8 features.
+## Halp! My container doesn't start!
 
-## Halp! Somehow starting my container does not work!
-
-The container needs permissions to access X11. The easiesst way is to run
+The container needs permissions to access X11. The easiest way is to run
 
 ```bash
 xhost +local:root
