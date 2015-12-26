@@ -18,7 +18,7 @@
 #        --net host \
 #        fschl/skype
 #
-FROM debian:jessie
+FROM debian:sid
 
 # Tell debconf to run in non-interactive mode
 ENV DEBIAN_FRONTEND noninteractive
