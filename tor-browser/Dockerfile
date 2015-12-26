@@ -7,7 +7,7 @@
 #	-e DISPLAY=unix$DISPLAY \
 #	fschl/tor-browser
 #
-FROM debian:jessie
+FROM debian:sid
 MAINTAINER Jessica Frazelle <jess@docker.com>
 
 # Tell debconf to run in non-interactive mode
@@ -31,7 +31,7 @@ RUN useradd --create-home --home-dir $HOME user \
 
 ENV LANG C.UTF-8
 
-ENV TOR_VERSION 5.0.3
+ENV TOR_VERSION 5.0.6
 ENV TOR_FINGERPRINT 0x4E2C6E8793298290
 
 # download tor and check signature
