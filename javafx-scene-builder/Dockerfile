@@ -21,4 +21,4 @@ USER eclipse
 
 WORKDIR /home/eclipse/workspace
 
-CMD ["java", "-jar" "/home/eclipse/scenebuilder.jar"]
+CMD ["/usr/bin/java", "-jar", "/home/eclipse/scenebuilder.jar"]
