@@ -1,4 +1,4 @@
-# golang:1.5 image with added appArmor
+# golang:1.6 image with added appArmor
 # so you can use it to run docker commands
 #
 # docker run -it --rm \
@@ -8,7 +8,7 @@
 # -w /usr/src/app
 # fschl/golang-dind go "@$"
 
-FROM golang:1.5
+FROM golang:1.6
 
 MAINTAINER fschl <fschl.code@gmail.com>
 
