@@ -1,0 +1,33 @@
+FROM java:8
+
+MAINTAINER Frieder Schlesier <fschl.code@gmail.com>
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+        ca-certificates \
+        groovy \
+        openjfx \
+        ssh \
+        && rm -rf /var/lib/apt/lists/*
+
+ENV ECLIPSE_SHA512 e66bfafb3fb568a23c203c7acf64a92b9424f7f03673bcb2ae23e77cb3001bbacc3acdf041e120657ce9eeb49c39009104bb046bafd2584ca2202333c31d08c4
+
+RUN wget http://ftp.halifax.rwth-aachen.de/eclipse//technology/epp/downloads/release/neon/R/eclipse-jee-neon-R-linux-gtk-x86_64.tar.gz -O /tmp/eclipse.tar.gz -q \
+    && echo "$ECLIPSE_SHA512 /tmp/eclipse.tar.gz" | sha512sum -c - \
+    && echo 'Installing eclipse' \
+    && tar -xf /tmp/eclipse.tar.gz -C /opt \
+    && rm /tmp/eclipse.tar.gz
+
+ENV INSTALL_DIR /usr/local/bin
+
+ADD run $INSTALL_DIR/eclipse
+RUN chmod +x $INSTALL_DIR/eclipse
+
+RUN adduser --disabled-password --quiet --gecos '' eclipse \
+    && chown -R root:eclipse $INSTALL_DIR/eclipse \
+    && chmod -R 775 $INSTALL_DIR/eclipse
+
+USER eclipse
+
+WORKDIR /home/eclipse/workspace
+
+CMD ["/usr/local/bin/eclipse"]
