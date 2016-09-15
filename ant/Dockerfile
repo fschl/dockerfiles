@@ -1,0 +1,13 @@
+FROM openjdk:8
+
+RUN apt-get update && apt-get install -y \
+        ant \
+        openjdk-8-jre-headless="$JAVA_DEBIAN_VERSION" \
+		ca-certificates-java="$CA_CERTIFICATES_JAVA_VERSION" \
+	&& rm -rf /var/lib/apt/lists/* \
+
+RUN mkdir /src
+
+WORKDIR /src
+
+CMD ["ant"]
