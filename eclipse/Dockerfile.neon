@@ -22,6 +22,13 @@ ENV INSTALL_DIR /usr/local/bin
 ADD run $INSTALL_DIR/eclipse
 RUN chmod +x $INSTALL_DIR/eclipse
 
+RUN apt-get update && apt-get install -y --no-install-recommends \
+        ffmpeg \
+        fswebcam \
+        libgomp1 \
+        sudo \
+        && rm -rf /var/lib/apt/lists/*
+
 RUN adduser --disabled-password --quiet --gecos '' eclipse \
     && chown -R root:eclipse $INSTALL_DIR/eclipse \
     && chmod -R 775 $INSTALL_DIR/eclipse
